@@ -7,6 +7,14 @@ const UserSchema = new Schema(
 			unique: [true, "Email already exists"],
 			required: [true, "Email is required"],
 		},
+		OTP: {
+			type: Number,
+			required: [true, "OTP is required"],
+		},
+		verified: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	{ timestamps: true }
 );
