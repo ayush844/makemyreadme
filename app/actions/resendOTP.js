@@ -5,11 +5,9 @@ import { sendOTP } from "@/utils/emailService";
 export async function resendOTP(email) {
 	await connectDB();
 	try {
-		const user = await User.findOne({ email });
-		if (!user) {
-			throw new Error("User not found");
-		}
-		await sendOTP(email, user.OTP);
+		const OTP = Math.floor(100000 + Math.random() * 900000);
+		await sendOTP(email, OTP);
+		await User.updateOne({ email }, { $set: { OTP } });
 		return { success: true, message: "OTP resent successfully" };
 	} catch (error) {
 		return { success: false, message: error.message };

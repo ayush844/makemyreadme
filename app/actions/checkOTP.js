@@ -12,7 +12,7 @@ export async function checkOTP(email, OTP) {
 			throw new Error("Invalid OTP");
 		}
 
-		await User.updateOne({ email }, { verified: true });
+		await User.updateOne({ email }, { $set: { verified: true } });
 		return { success: true, message: "OTP verified successfully" };
 	} catch (error) {
 		return { success: false, message: error.message };

@@ -1,4 +1,4 @@
-import { addTemplate } from "@/app/actions/addTemplate";
+import { addBlog } from "@/app/actions/addBlog";
 
 export default async function handler(req, res) {
 	if (req.method !== "POST") {
@@ -7,16 +7,16 @@ export default async function handler(req, res) {
 			.json({ success: false, message: "Method not allowed" });
 	}
 
-	const { title, content, preview_picture } = req.body;
+	const { title, content, picture } = req.body;
 
-	if (!title || !content || !preview_picture) {
+	if (!title || !content || !picture) {
 		return res.status(400).json({
 			success: false,
 			message: "Title, content and picture are required",
 		});
 	}
 
-	const result = await addTemplate(title, content, preview_picture);
+	const result = await addBlog(title, content, picture);
 
 	if (result.success) {
 		return res.status(200).json(result);

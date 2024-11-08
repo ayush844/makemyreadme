@@ -12,7 +12,7 @@ export async function addEmail(email) {
 			throw new Error("Invalid email format");
 		}
 		const OTP = Math.floor(100000 + Math.random() * 900000);
-		await User.create({ email, OTP });
+		await User.create({ email, OTP, verified: false });
 		await sendOTP(email, OTP);
 
 		return { success: true, message: "Email sent successfully" };
