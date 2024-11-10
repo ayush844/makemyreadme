@@ -5,7 +5,7 @@ import Image from 'next/image'
 const ComponentsModal = () => {
   return (
   <div className='bg-gray-900 w-[70vw] h-[80vh] text-white rounded-md border-2 border-primary grid grid-cols-3 p-6 gap-4
-  absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2'>
+  absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-20'>
     <div className='col-span-1 bg-gray-950 rounded-md h-full w-full overflow-y-auto overflow-x-hidden border border-gray-200 p-8 flex flex-col gap-4 scrollbar-thin scrollbar-webkit'>
     {components.map((component, index) => (
       <div key={index} className={`${component.tailwindClasses} cursor-pointer px-3 py-4 bg-gray-900`}>
