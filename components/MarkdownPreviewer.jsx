@@ -2,9 +2,7 @@
 import React, { useState } from "react";
 
 const MarkdownPreviewer = () => {
-	const [markdown, setMarkdown] = useState(
-		"sdfsd\ndfsdf sdfsdf dsf ds fd  df f f f f f f f f f f \n dsfhsd"
-	);
+	const [markdown, setMarkdown] = useState("Markdown previewer...");
 
 	const renderMarkdown = (text) => {
 		return text.split("\n").map((str, index) => (
@@ -17,7 +15,7 @@ const MarkdownPreviewer = () => {
 
 	return (
 		<div
-			className={`col-span-6 h-screen flex flex-col max-w-full p-4 rounded-lg shadow-lg bg-[#0f172a] border border-gray-700 mx-2`}
+			className={`col-span-6 h-[90vh] flex flex-col max-w-full p-4 rounded-lg shadow-lg bg-[#0f172a] border border-gray-700 mx-2`}
 		>
 			<div className="p-4 border border-gray-700 rounded-lg shadow-inner flex-grow overflow-auto bg-gray-800 text-white">
 				{renderMarkdown(markdown)}
