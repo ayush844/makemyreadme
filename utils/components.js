@@ -8,8 +8,16 @@ const components = [
       tailwindClasses: "bg-gray-800 text-gray-400 text-lg py-3 px-4 rounded-md text-center hover:bg-gray-700 hover:scale-105 transition-transform duration-200",
     },
     {
+      name: "Table of Contents",
+      tailwindClasses: "bg-gray-800 text-gray-300 font-medium text-lg py-3 px-4 rounded-md text-center hover:bg-gray-700 hover:scale-105 transition-transform duration-200",
+    },
+    {
       name: "Quick Start Guide",
       tailwindClasses: "bg-gray-800 text-gray-200 font-semibold text-lg py-3 px-4 rounded-md text-center hover:bg-gray-700 hover:scale-105 transition-transform duration-200",
+    },
+    {
+      name: "Subtitle",
+      tailwindClasses: "bg-gray-800 text-gray-300 font-semibold text-lg py-3 px-4 rounded-md text-center hover:bg-gray-700 hover:scale-105 transition-transform duration-200",
     },
     {
       name: "Code Block",
@@ -30,14 +38,6 @@ const components = [
     {
       name: "Features",
       tailwindClasses: "bg-gray-800 text-gray-300 text-lg py-3 px-4 rounded-md text-center hover:bg-gray-700 hover:scale-105 transition-transform duration-200",
-    },
-    {
-      name: "Table of Contents",
-      tailwindClasses: "bg-gray-800 text-gray-300 font-medium text-lg py-3 px-4 rounded-md text-center hover:bg-gray-700 hover:scale-105 transition-transform duration-200",
-    },
-    {
-      name: "Subtitle",
-      tailwindClasses: "bg-gray-800 text-gray-300 font-semibold text-lg py-3 px-4 rounded-md text-center hover:bg-gray-700 hover:scale-105 transition-transform duration-200",
     },
     {
       name: "License",
