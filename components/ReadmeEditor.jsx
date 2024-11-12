@@ -3,6 +3,39 @@ import { FaCopy } from "react-icons/fa";
 import { IoMdAddCircle } from "react-icons/io";
 
 export default function Editor({ markdown, setMarkdown }) {
+	const MAX_FILE_SIZE = 3 * 1024 * 1024;
+	const handleUpload = async (event) => {
+		const file = event.target.files[0];
+		if (file.size > MAX_FILE_SIZE) {
+			alert("File size exceeds 3 MB. Please upload a smaller image.");
+			return;
+		}
+		const reader = new FileReader();
+
+		reader.readAsDataURL(file);
+		reader.onloadend = async () => {
+			const base64data = reader.result;
+
+			try {
+				const response = await fetch("/api/upload-Image", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ data: base64data }),
+				});
+
+				const data = await response.json();
+				if (data.url)
+					setMarkdown(
+						markdown + "\n\n" + "![Uploaded Image](" + data.url + ")"
+					);
+			} catch (error) {
+				console.error("Image upload failed:", error);
+			}
+		};
+	};
+
 	return (
 		<div className="col-span-6 h-[90vh] flex flex-col max-w-full p-4 bg-[#0f172a] text-white border border-gray-700 rounded-lg shadow-lg mx-2">
 			<div className="flex justify-between items-center mb-4">
@@ -34,7 +67,16 @@ export default function Editor({ markdown, setMarkdown }) {
 				<button className="flex items-center justify-center h-11 px-4 rounded-full bg-[#9333EA] hover:bg-purple-600 transition duration-300 transform hover:scale-105 active:scale-95">
 					<span className="text-md font-semibold">Format</span>
 				</button>
-				<button className="flex items-center justify-center h-11 px-4 rounded-full bg-gray-600 hover:bg-gray-500 transition duration-300 transform hover:scale-105 active:scale-95">
+				<button
+					className="flex items-center justify-center h-11 px-4 rounded-full bg-gray-600 hover:bg-gray-500 transition duration-300 transform hover:scale-105 active:scale-95"
+					onClick={() => document.getElementById("file-input").click()}
+				>
+					<input
+						type="file"
+						id="file-input"
+						onChange={handleUpload}
+						style={{ display: "none" }}
+					/>
 					<IoMdAddCircle className="text-3xl text-white" />
 				</button>
 			</div>
