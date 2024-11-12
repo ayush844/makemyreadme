@@ -1,27 +1,38 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
+import { marked } from "marked";
+import DOMPurify from "dompurify";
+import "github-markdown-css";
 
-const MarkdownPreviewer = () => {
-	const [markdown, setMarkdown] = useState("Markdown previewer...");
+const MarkdownPreviewer = ({ markdown }) => {
+	marked.setOptions({
+		breaks: true,
+		gfm: true,
+	});
 
-	const renderMarkdown = (text) => {
-		return text.split("\n").map((str, index) => (
-			<span key={index}>
-				{str}
-				<br />
-			</span>
-		));
+	const html = marked(markdown || "");
+	const cleanHtml = DOMPurify.sanitize(html);
+
+	const exportMarkdown = () => {
+		const blob = new Blob([markdown], { type: "text/markdown" });
+		const link = document.createElement("a");
+		link.href = URL.createObjectURL(blob);
+		link.download = "markdown-preview.md";
+		link.click();
 	};
 
 	return (
 		<div
-			className={`col-span-6 h-[90vh] flex flex-col max-w-full p-4 rounded-lg shadow-lg bg-[#0f172a] border border-gray-700 mx-2`}
+			className={`col-span-6 max-h-[90vh] flex flex-col max-w-full p-4 rounded-lg shadow-lg bg-[#0f172a] border border-gray-700 mx-2`}
 		>
-			<div className="p-4 border border-gray-700 rounded-lg shadow-inner flex-grow overflow-auto bg-gray-800 text-white">
-				{renderMarkdown(markdown)}
-			</div>
+			<div
+				className="markdown-body p-4 border border-gray-700 rounded-lg shadow-inner flex-grow overflow-auto bg-gray-800 text-white"
+				dangerouslySetInnerHTML={{ __html: cleanHtml }}
+			></div>
 
-			<button className="w-full h-12 mt-4 rounded-lg bg-[#9333EA] hover:bg-purple-600 transition duration-300 text-xl font-semibold text-white">
+			<button
+				onClick={exportMarkdown}
+				className="w-full min-h-12 mt-4 rounded-lg bg-[#9333EA] hover:bg-purple-600 transition duration-300 text-xl font-semibold text-white"
+			>
 				Export
 			</button>
 		</div>

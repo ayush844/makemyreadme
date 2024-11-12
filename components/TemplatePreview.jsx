@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
-import { FaPlus, FaTag } from "react-icons/fa";
+import { FaTag } from "react-icons/fa";
+import { LuFilePlus2 } from "react-icons/lu";
 
 const TemplatePreview = ({ imgSrc }) => {
 	return (
@@ -16,8 +17,8 @@ const TemplatePreview = ({ imgSrc }) => {
 
 					{/* Dark overlay with icon that appears on hover */}
 					<div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-						<span className="text-white text-4xl md:text-5xl font-bold group-hover:scale-110 group-hover:-rotate-90 transition-transform duration-500 ease-in-out">
-							<FaPlus className="text-white text-4xl md:text-5xl transform scale-105 transition-transform duration-200 ease-in-out" />
+						<span className="text-white text-4xl md:text-5xl font-bold group-hover:scale-110  transition-transform duration-500 ease-in-out">
+							<LuFilePlus2 className="text-white text-4xl md:text-5xl transform scale-105 transition-transform duration-200 ease-in-out" />
 						</span>
 					</div>
 
