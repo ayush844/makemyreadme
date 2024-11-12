@@ -14,7 +14,7 @@ const ComponentsModal = () => {
     ))}
     </div>
     <div className='col-span-2 bg-slate-950 h-full w-full rounded-md border border-gray-200 flex flex-col gap-10 items-center justify-center overflow-y-auto overflow-x-hidden'>
-        <Image src={'/icons/namaste.png'} alt='Namaste' width={150} height={150} />
+        <Image src={'/icons/namaste.png'} alt='Namaste' width={150} height={150} priority  />
         <h1 className='text-4xl font-extrabold text-orange-600'>राम राम लाडले</h1>
     </div>
   </div>

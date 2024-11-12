@@ -44,7 +44,7 @@ const FeatureCard = ({ imageSrc, title, description }) => (
   <div className="group relative bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
     <div className="relative space-y-8 py-12 p-8">
       {/* <img src={imageSrc} className="w-12" alt="feature illustration" /> */}
-      <Image src={imageSrc} alt="Description of image" width={70} height={30} />
+      <Image src={imageSrc} alt="Description of image" width={70} height={30} priority  />
       <div className="space-y-2">
         <h5 className="text-xl font-semibold text-white transition group-hover:text-[#FF8000]">
           {title}

@@ -26,7 +26,7 @@ const Editor = () => {
   return (
     <div className='min-h-[90vh] w-screen lg:flex items-center justify-center relative py-6 hidden'>
       <button onClick={toggleModal} className="bg-primary border-white border-2 py-3 px-3  transition-all w-fit flex items-center justify-center gap-4  hover:scale-105 left-5 z-30 rounded-full absolute top-[50%] transform -translate-x-1/2 -translate-y-1/2 ">
-        <Image src={'/images/cubes.png'} width={40} height={40} alt='blocks' />
+        <Image src={'/images/cubes.png'} width={40} height={40} alt='blocks' priority  />
         {/* <span className='text-black font-bold text-xl'>{modal ? "Hide Components":"Add Components"}</span> */}
       </button>
 

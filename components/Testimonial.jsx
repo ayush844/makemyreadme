@@ -1,5 +1,5 @@
 import React from "react";
-import {Container}from "./Container";
+import { Container } from "./Container";
 import Image from "next/image";
 
 const Testimonials = () => {
@@ -75,9 +75,7 @@ const Testimonials = () => {
                   <h6 className="text-lg font-medium text-white">
                     {testimonial.name}
                   </h6>
-                  <p className="text-sm text-gray-300">
-                    {testimonial.role}
-                  </p>
+                  <p className="text-sm text-gray-300">{testimonial.role}</p>
                 </div>
               </div>
               <p className="mt-8">{testimonial.message}</p>

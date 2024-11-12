@@ -8,7 +8,7 @@ const Error = () => {
       <div className="flex flex-col items-center">  {/* Center the content */}
         {/* 404 Image */}
         <div className="flex justify-center">
-          <Image src="/icons/error-404.png" alt="error" width={250} height={250} />
+          <Image src="/icons/error-404.png" alt="error" width={250} height={250} priority  />
         </div>
         
         {/* Page Not Found Message */}
