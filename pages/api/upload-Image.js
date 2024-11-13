@@ -1,4 +1,5 @@
 import cloudinary from "@/utils/cloudinary";
+import deleteOldImages from "@/utils/deleteOldImages";
 
 export default async function handler(req, res) {
 	if (req.method === "POST") {
@@ -7,6 +8,7 @@ export default async function handler(req, res) {
 			const uploadResponse = await cloudinary.uploader.upload(fileStr, {
 				upload_preset: "unsigned_preset",
 			});
+			await deleteOldImages();
 			res.status(200).json({ url: uploadResponse.secure_url });
 		} catch (error) {
 			console.error("Cloudinary upload error:", error);

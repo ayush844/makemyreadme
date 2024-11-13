@@ -3,6 +3,7 @@ import { FaCopy } from "react-icons/fa";
 import { IoMdAddCircle } from "react-icons/io";
 
 export default function Editor({ markdown, setMarkdown }) {
+	const [url, setUrl] = React.useState([]);
 	const MAX_FILE_SIZE = 3 * 1024 * 1024;
 	const handleUpload = async (event) => {
 		const file = event.target.files[0];
@@ -26,14 +27,38 @@ export default function Editor({ markdown, setMarkdown }) {
 				});
 
 				const data = await response.json();
-				if (data.url)
+				if (data.url) {
+					setUrl((prevUrl) => [...prevUrl, data.url]);
 					setMarkdown(
 						markdown + "\n\n" + "![Uploaded Image](" + data.url + ")"
 					);
+				}
 			} catch (error) {
 				console.error("Image upload failed:", error);
 			}
 		};
+	};
+
+	const handleDelete = async (event) => {
+		try {
+			const response = await fetch("/api/delete-Image", {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ urls: url }),
+			});
+
+			if (response.ok) {
+				const result = await response.json();
+				console.log(result.message);
+			} else {
+				const error = await response.json();
+				console.error("Delete error:", error.error);
+			}
+		} catch (error) {
+			console.error("Failed to delete image:", error);
+		}
 	};
 
 	return (
@@ -78,6 +103,12 @@ export default function Editor({ markdown, setMarkdown }) {
 						style={{ display: "none" }}
 					/>
 					<IoMdAddCircle className="text-3xl text-white" />
+				</button>
+				<button
+					className="flex items-center justify-center h-11 px-4 rounded-full bg-red-600 hover:bg-red-500 transition duration-300 transform hover:scale-105 active:scale-95"
+					onClick={() => handleDelete(url)}
+				>
+					Delete Image
 				</button>
 			</div>
 		</div>
