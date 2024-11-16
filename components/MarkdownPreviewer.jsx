@@ -3,7 +3,7 @@ import { marked } from "marked";
 import DOMPurify from "dompurify";
 import "github-markdown-css";
 
-const MarkdownPreviewer = ({ markdown }) => {
+const MarkdownPreviewer = ({ markdown, ref, handleScroll }) => {
   marked.setOptions({
     breaks: true,
     gfm: true,
@@ -27,6 +27,8 @@ const MarkdownPreviewer = ({ markdown }) => {
       <div
         className="markdown-body p-4 border border-gray-700 rounded-lg shadow-inner flex-grow overflow-auto bg-gray-800 text-white"
         dangerouslySetInnerHTML={{ __html: cleanHtml }}
+        ref={ref}
+        onScroll={handleScroll}
       ></div>
 
       <button

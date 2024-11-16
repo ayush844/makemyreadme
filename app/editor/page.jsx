@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import ComponentsModal from "@/components/ComponentsModal";
 import ReadmeEditor from "@/components/ReadmeEditor";
 import Image from "next/image";
@@ -82,6 +82,29 @@ Happy writing in Markdown!
     document.body.classList.remove("overflow-y-hidden");
   }
 
+  const container1Ref = useRef(null);
+  const container2Ref = useRef(null);
+  const isSyncingRef = useRef(false);
+
+  const handleScroll = (sourceRef, targetRef) => {
+    if (!isSyncingRef.current) {
+      isSyncingRef.current = true;
+      const source = sourceRef.current;
+      const target = targetRef.current;
+
+      if (source && target) {
+        const scrollRatio =
+          source.scrollTop / (source.scrollHeight - source.clientHeight);
+        target.scrollTop =
+          scrollRatio * (target.scrollHeight - target.clientHeight);
+      }
+
+      setTimeout(() => {
+        isSyncingRef.current = false;
+      }, 10);
+    }
+  };
+
   return (
     <div className="min-h-[90vh] w-screen lg:flex items-center justify-center relative py-6 hidden">
       <button
@@ -106,8 +129,17 @@ Happy writing in Markdown!
         </>
       )}
       <div className="grid grid-cols-12 w-screen container mx-auto">
-        <ReadmeEditor setMarkdown={setMarkdown} markdown={markdown} />
-        <MarkdownPreviewer markdown={markdown} />
+        <ReadmeEditor
+          ref={container1Ref}
+          handleScroll={() => handleScroll(container1Ref, container2Ref)}
+          setMarkdown={setMarkdown}
+          markdown={markdown}
+        />
+        <MarkdownPreviewer
+          ref={container2Ref}
+          handleScroll={() => handleScroll(container2Ref, container1Ref)}
+          markdown={markdown}
+        />
       </div>
     </div>
   );
