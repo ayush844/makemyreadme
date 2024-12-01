@@ -4,7 +4,13 @@ import { IoMdAddCircle } from "react-icons/io";
 import { RiImageAddFill } from "react-icons/ri";
 import { RiImageAddLine } from "react-icons/ri";
 
-export default function Editor({ markdown, setMarkdown, ref, handleScroll }) {
+export default function Editor({
+  markdown,
+  setMarkdown,
+  ref,
+  handleScroll,
+  toggleThankYou,
+}) {
   const [url, setUrl] = React.useState([]);
   const MAX_FILE_SIZE = 3 * 1024 * 1024;
   const handleUpload = async (event) => {
@@ -86,6 +92,7 @@ export default function Editor({ markdown, setMarkdown, ref, handleScroll }) {
                 console.error("Failed to copy markdown:", err);
                 alert("Failed to copy. Please try again.");
               });
+            toggleThankYou();
           }}
         >
           <FaCopy className="text-xl text-white" />

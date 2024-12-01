@@ -3,7 +3,7 @@ import { marked } from "marked";
 import DOMPurify from "dompurify";
 import "github-markdown-css";
 
-const MarkdownPreviewer = ({ markdown, ref, handleScroll }) => {
+const MarkdownPreviewer = ({ markdown, ref, handleScroll, toggleThankYou }) => {
   marked.setOptions({
     breaks: true,
     gfm: true,
@@ -32,7 +32,10 @@ const MarkdownPreviewer = ({ markdown, ref, handleScroll }) => {
       ></div>
 
       <button
-        onClick={exportMarkdown}
+        onClick={() => {
+          exportMarkdown();
+          toggleThankYou();
+        }}
         className="w-full min-h-12 mt-4 rounded-lg bg-[#9333EA] hover:bg-purple-600 transition duration-300 text-xl font-semibold text-white"
       >
         Export

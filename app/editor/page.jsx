@@ -13,6 +13,7 @@ import {
   BusinessTemplate,
   DefaultTemplate,
 } from "@/components/templates";
+import ThankYouModal from "@/components/ThankYouModal";
 
 const Editor = () => {
   const [markdown, setMarkdown] = useState(DefaultTemplate);
@@ -34,11 +35,17 @@ const Editor = () => {
 
   const [modal, setModal] = useState(false);
 
+  const [thankyou, setThankyou] = useState(false);
+
   const toggleModal = () => {
     setModal((modal) => !modal);
   };
 
-  if (modal) {
+  const toggleThankYou = () => {
+    setThankyou((modal) => !modal);
+  };
+
+  if (modal || thankyou) {
     document.body.classList.add("overflow-y-hidden");
   } else {
     document.body.classList.remove("overflow-y-hidden");
@@ -90,17 +97,30 @@ const Editor = () => {
           />
         </>
       )}
+
+      {thankyou && (
+        <>
+          <div
+            onClick={toggleThankYou}
+            className=" z-10 fixed top-0 left-0 right-0 bottom-0 w-screen h-screen bg-[rgba(3,4,8,0.51)]"
+          ></div>
+          <ThankYouModal />
+        </>
+      )}
+
       <div className="grid grid-cols-12 w-screen container mx-auto">
         <ReadmeEditor
           ref={container1Ref}
           handleScroll={() => handleScroll(container1Ref, container2Ref)}
           setMarkdown={setMarkdown}
           markdown={markdown}
+          toggleThankYou={toggleThankYou}
         />
         <MarkdownPreviewer
           ref={container2Ref}
           handleScroll={() => handleScroll(container2Ref, container1Ref)}
           markdown={markdown}
+          toggleThankYou={toggleThankYou}
         />
       </div>
     </div>
