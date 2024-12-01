@@ -1,11 +1,7 @@
-import React from 'react'
+import Articles from "@/components/Articles";
 
 const Blogs = () => {
-  return (
-    <div>
-        <h1 className=' text-white'>HELLO JII FROM BLOGS</h1>
-    </div>
-  )
-}
+	return <Articles />;
+};
 
-export default Blogs
+export default Blogs;
