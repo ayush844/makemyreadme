@@ -9,7 +9,7 @@ const ComponentsModal = ({ appendMarkdown, toggleModal }) => {
   return (
     <div
       className="bg-gray-900 w-[70vw] h-[80vh] text-white rounded-md border-2 border-primary grid grid-cols-3 p-6 gap-4
-  absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-20"
+  fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-20"
     >
       <div className="col-span-1 bg-gray-950 rounded-md h-full w-full overflow-y-auto overflow-x-hidden border border-gray-200 p-8 flex flex-col gap-4 scrollbar-thin scrollbar-webkit">
         {components.map((component, index) => (
@@ -48,7 +48,7 @@ const ComponentsModal = ({ appendMarkdown, toggleModal }) => {
         {selectedComponent ? (
           <>
             <ComponentPreviewer markdown={selectedComponent.markdownCode} />
-            <div className=" flex items-center justify-end mr-10 mb-4 w-full px-8">
+            <div className=" flex items-center justify-end mr-4 mb-4 w-full ">
               <button
                 className="flex items-center justify-center h-11 px-4 rounded-full bg-[#9333EA] hover:bg-purple-600 transition duration-300 transform hover:scale-105 active:scale-95"
                 onClick={() => {
@@ -63,14 +63,14 @@ const ComponentsModal = ({ appendMarkdown, toggleModal }) => {
         ) : (
           <div className="flex flex-col items-center justify-center">
             <Image
-              src={"/icons/namaste.png"}
-              alt="Namaste"
-              width={150}
-              height={150}
+              src={"/icons/setting.png"}
+              alt="Setting"
+              width={200}
+              height={200}
               priority
             />
-            <h1 className="text-4xl font-extrabold text-orange-600">
-              राम राम लाडले
+            <h1 className="text-4xl font-extrabold text-blue-400">
+              Select a component to start
             </h1>
           </div>
         )}

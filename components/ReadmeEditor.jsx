@@ -1,6 +1,8 @@
 import React from "react";
 import { FaCopy } from "react-icons/fa";
 import { IoMdAddCircle } from "react-icons/io";
+import { RiImageAddFill } from "react-icons/ri";
+import { RiImageAddLine } from "react-icons/ri";
 
 export default function Editor({ markdown, setMarkdown, ref, handleScroll }) {
   const [url, setUrl] = React.useState([]);
@@ -74,6 +76,17 @@ export default function Editor({ markdown, setMarkdown, ref, handleScroll }) {
         <button
           className="flex items-center justify-center h-11 w-11 rounded-full bg-gray-600 hover:bg-gray-500 transition duration-300 transform hover:scale-105 active:scale-95"
           aria-label="copy"
+          onClick={() => {
+            navigator.clipboard
+              .writeText(markdown)
+              .then(() => {
+                alert("Markdown copied to clipboard!");
+              })
+              .catch((err) => {
+                console.error("Failed to copy markdown:", err);
+                alert("Failed to copy. Please try again.");
+              });
+          }}
         >
           <FaCopy className="text-xl text-white" />
         </button>
@@ -90,10 +103,10 @@ export default function Editor({ markdown, setMarkdown, ref, handleScroll }) {
         ></textarea>
       </div>
 
-      <div className="flex justify-between items-center mt-4 space-x-3">
-        <button className="flex items-center justify-center h-11 px-4 rounded-full bg-[#9333EA] hover:bg-purple-600 transition duration-300 transform hover:scale-105 active:scale-95">
+      <div className="flex justify-end items-center mt-4 space-x-3">
+        {/* <button className="flex items-center justify-center h-11 px-4 rounded-full bg-[#9333EA] hover:bg-purple-600 transition duration-300 transform hover:scale-105 active:scale-95">
           <span className="text-md font-semibold">Format</span>
-        </button>
+        </button> */}
         <button
           className="flex items-center justify-center h-11 px-4 rounded-full bg-gray-600 hover:bg-gray-500 transition duration-300 transform hover:scale-105 active:scale-95"
           onClick={() => document.getElementById("file-input").click()}
@@ -104,14 +117,15 @@ export default function Editor({ markdown, setMarkdown, ref, handleScroll }) {
             onChange={handleUpload}
             style={{ display: "none" }}
           />
-          <IoMdAddCircle className="text-3xl text-white" />
+          {/* <IoMdAddCircle className="text-3xl text-white" /> */}
+          <RiImageAddLine className="text-3xl text-white" />
         </button>
-        <button
+        {/* <button
           className="flex items-center justify-center h-11 px-4 rounded-full bg-red-600 hover:bg-red-500 transition duration-300 transform hover:scale-105 active:scale-95"
           onClick={() => handleDelete(url)}
         >
           Delete Image
-        </button>
+        </button> */}
       </div>
     </div>
   );

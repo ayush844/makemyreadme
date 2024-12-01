@@ -1,75 +1,37 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ComponentsModal from "@/components/ComponentsModal";
 import ReadmeEditor from "@/components/ReadmeEditor";
 import Image from "next/image";
 import MarkdownPreviewer from "@/components/MarkdownPreviewer";
+import { usePathname, useSearchParams } from "next/navigation";
+
+import {
+  BasicTemplate,
+  OpenSourceTemplate,
+  DocumentationTemplate,
+  BusinessTemplate,
+  DefaultTemplate,
+} from "@/components/templates";
 
 const Editor = () => {
-  const [markdown, setMarkdown] = useState(`
-# Welcome to the Markdown Previewer!
+  const [markdown, setMarkdown] = useState(DefaultTemplate);
 
-## Features
+  const searchParams = useSearchParams();
+  const template = searchParams.get("template");
 
-- **Real-time Preview:** See your Markdown rendered instantly.
-- **Syntax Highlighting:** Perfect for code snippets.
-- **Export Options:** Download your Markdown as a \`.md\` or \`.html\` file.
+  useEffect(() => {
+    if (template == "basic") {
+      setMarkdown(BasicTemplate);
+    } else if (template == "os") {
+      setMarkdown(OpenSourceTemplate);
+    } else if (template == "doc") {
+      setMarkdown(DocumentationTemplate);
+    } else if (template == "business") {
+      setMarkdown(BusinessTemplate);
+    }
+  }, [template]);
 
-## Usage
-
-Just type Markdown text in the editor to see it rendered here!
-
-### Examples
-
-#### Headings
-
-\`\`\`markdown
-# This is a Heading 1
-## This is a Heading 2
-### This is a Heading 3
-\`\`\`
-
-#### Lists
-
-1. First item
-2. Second item
-3. Third item
-
-- Unordered list item 1
-- Unordered list item 2
-- Unordered list item 3
-
-#### Links
-
-[Visit GitHub](https://github.com)
-
-#### Images
-
-![Sample Image](https://via.placeholder.com/150)
-
-#### Code
-
-\`\`\`javascript
-// JavaScript example
-function greet() {
-  console.log("Hello, World!");
-}
-\`\`\`
-
-#### Blockquotes
-
-> "Markdown is amazing!" - Some Developer
-
-#### Tables
-
-| Feature       | Description                       |
-| ------------- | --------------------------------- |
-| Real-time     | Instant feedback                  |
-| Easy to read  | Markdown is simple and readable   |
-| Customizable  | Supports various custom elements  |
-
-Happy writing in Markdown!
-  `);
   const [modal, setModal] = useState(false);
 
   const toggleModal = () => {
@@ -106,7 +68,7 @@ Happy writing in Markdown!
   };
 
   return (
-    <div className="min-h-[90vh] w-screen lg:flex items-center justify-center relative py-6 hidden">
+    <div className="min-h-[90vh] w-screen lg:flex items-center justify-center relative py-6 hidden ">
       <button
         onClick={toggleModal}
         className="bg-primary border-white border-2 py-3 px-3  transition-all w-fit flex items-center justify-center gap-4  hover:scale-105 left-5 z-30 rounded-full absolute top-[50%] transform -translate-x-1/2 -translate-y-1/2 "

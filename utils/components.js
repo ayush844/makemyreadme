@@ -41,11 +41,19 @@ const components = [
       "![Awesome](https://img.shields.io/badge/awesome-yes-ff69b4.svg)\n",
   },
   {
-    name: "📚 Table of Contents",
+    name: "📖 Table of Contents",
     tailwindClasses:
       "bg-blue-800 text-white font-bold text-2xl py-4 px-6 rounded-lg text-center hover:bg-gray-700 hover:scale-105 transition-transform duration-200",
     markdownCode:
-      "## Table of Contents\n\n- [Hero Section](#hero-section)\n- [Quick Start Guide](#quick-start-guide)\n- [Installation Section](#installation-section)\n- [Usage Example](#usage-example)\n- [Features](#features)\n- [FAQ](#faq)\n- [License](#license)\n\n\n",
+      "### Table of Contents\n\n" +
+      "- [About the Project](#about-the-project)\n" +
+      "- [Getting Started](#getting-started)\n" +
+      "- [Features](#features)\n" +
+      "- [Documentation](#documentation)\n" +
+      "- [Contributing](#contributing)\n" +
+      "- [License](#license)\n" +
+      "- [Contact](#contact)\n" +
+      "- [Acknowledgments](#acknowledgments)\n\n",
   },
   {
     name: "🦸 Hero Section",
@@ -178,12 +186,56 @@ const components = [
   },
 
   {
-    name: "📞 Contact Information",
+    name: "📚 Additional Resources",
     tailwindClasses:
       "bg-blue-800 text-white font-bold text-2xl py-4 px-6 rounded-lg text-center hover:bg-gray-700 hover:scale-105 transition-transform duration-200",
     markdownCode:
-      "## Contact\n\nFor questions, feel free to reach out:\n\n- **Email**: example@example.com\n- **LinkedIn**: [Your Profile](https://linkedin.com/in/yourprofile)\n- **Twitter**: [@yourhandle](https://twitter.com/yourhandle)\n\n\n",
+      "### Additional Resources\n\n" +
+      "- [API Documentation](https://yourdomain.com/docs)\n" +
+      "- [Developer Wiki](https://yourdomain.com/wiki)\n" +
+      "- [Community Forum](https://yourdomain.com/forum)\n" +
+      "- [Support Center](https://yourdomain.com/support)\n\n",
   },
+  {
+    name: "📬 Contact Information",
+    tailwindClasses:
+      "bg-blue-800 text-white font-bold text-2xl py-4 px-6 rounded-lg text-center hover:bg-gray-700 hover:scale-105 transition-transform duration-200",
+    markdownCode:
+      "### Contact Information\n\n" +
+      "- **Email**: support@yourcompany.com\n" +
+      "- **Phone**: +1 (123) 456-7890\n" +
+      "- **Support Portal**: [Submit a Ticket](https://yourdomain.com/support/tickets)\n" +
+      "- **Twitter**: [@yourcompany](https://twitter.com/yourcompany)\n" +
+      "- **LinkedIn**: [Your Company Profile](https://linkedin.com/company/yourcompany)\n\n",
+  },
+  {
+    name: "💡 Tips for Success",
+    tailwindClasses:
+      "bg-blue-800 text-white font-bold text-2xl py-4 px-6 rounded-lg text-center hover:bg-gray-700 hover:scale-105 transition-transform duration-200",
+    markdownCode:
+      "### Tips for Success\n\n" +
+      "- Follow best practices for coding and documentation.\n" +
+      "- Stay updated with industry trends.\n" +
+      "- Engage actively with the community.\n" +
+      "- Provide feedback and contribute to open-source projects.\n\n",
+  },
+  {
+    name: "🛠️ Development Roadmap",
+    tailwindClasses:
+      "bg-blue-800 text-white font-bold text-2xl py-4 px-6 rounded-lg text-center hover:bg-gray-700 hover:scale-105 transition-transform duration-200",
+    markdownCode:
+      "### Development Roadmap\n\n" +
+      "#### Phase 1: MVP Development\n" +
+      "- Implement core features.\n" +
+      "- Set up CI/CD pipelines.\n" +
+      "#### Phase 2: Feature Expansion\n" +
+      "- Add advanced analytics.\n" +
+      "- Integrate third-party tools.\n" +
+      "#### Phase 3: Scaling and Optimization\n" +
+      "- Optimize for high-traffic use.\n" +
+      "- Introduce machine learning features.\n\n",
+  },
+
   {
     name: "🤲 Support",
     tailwindClasses:
