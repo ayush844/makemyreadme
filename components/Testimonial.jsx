@@ -1,8 +1,20 @@
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
 import { Container } from "./Container";
 import Image from "next/image";
 
+import { motion, useScroll } from "motion/react";
+import { delay } from "motion";
+
 const Testimonials = () => {
+  const ref = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["0 1", "1.33 1"],
+  });
+
   const testimonials = [
     {
       name: "Liam Carter",
@@ -51,15 +63,53 @@ const Testimonials = () => {
   return (
     <div className="text-gray-300" id="testimonials">
       <Container>
-        <div className="mb-16 space-y-4 px-6 md:px-0 mt-28">
-          <h2 className="text-center text-2xl font-bold text-white md:text-4xl">
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          whileInView={{
+            opacity: 1,
+          }}
+          viewport={{
+            // once: true,
+            // margin: "-200px",
+            amount: "all",
+          }}
+          transition={{ duration: 1, ease: "easeInOut" }}
+          className="mb-16 space-y-4 px-6 md:px-0 mt-28"
+        >
+          <motion.h2
+            className="text-center text-2xl font-bold text-white md:text-4xl overflow-hidden whitespace-nowrap"
+            initial={{ opacity: 0, y: 200 }}
+            // animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+          >
             We Have Some Happy Users.
-          </h2>
-        </div>
+          </motion.h2>
+        </motion.div>
         <div className="md:columns-2 lg:columns-3 gap-8 space-y-8">
           {testimonials.map((testimonial, index) => (
-            <div
+            <motion.div
+              // style={{
+              //   scale: scrollYProgress,
+              //   opacity: scrollYProgress,
+              // }}
+              initial={{
+                opacity: 0,
+                scale: 0.25,
+              }}
+              // animate={{
+              //   opacity: 1,
+              //   scale: 1,
+              // }}
+              whileInView={{
+                opacity: 1,
+                scale: 1,
+              }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
               key={index}
+              ref={ref}
               className="aspect-auto p-8 border rounded-3xl bg-gray-800 border-gray-700 shadow-none"
             >
               <div className="flex gap-4">
@@ -79,7 +129,7 @@ const Testimonials = () => {
                 </div>
               </div>
               <p className="mt-8">{testimonial.message}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </Container>

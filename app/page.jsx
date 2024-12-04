@@ -7,11 +7,16 @@ import Testimonials from "@/components/Testimonial";
 export default function Home() {
   return (
     <>
-    <HeroSection />
-    <Features />
-    <Testimonials />
-    <CallToAction />
-    <Articles />
+      <HeroSection />
+      <Features />
+      <Testimonials />
+      <CallToAction />
+      <Articles
+        heading={"Latest Articles"}
+        description={
+          "Explore insights, tips, and best practices for crafting professional README files that make an impact."
+        }
+      />
     </>
   );
 }

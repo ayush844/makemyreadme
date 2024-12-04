@@ -3,9 +3,19 @@ import React from "react";
 import { FaTag } from "react-icons/fa";
 import { LuFilePlus2 } from "react-icons/lu";
 
-const TemplatePreview = ({ imgSrc, previewName, templatePath }) => {
+import { motion } from "motion/react";
+
+const TemplatePreview = ({
+  imgSrc,
+  previewName,
+  templatePath,
+  fadeInUpAnimation,
+}) => {
   return (
-    <div className="md:col-span-4 p-8 md:p-4">
+    <motion.div
+      variants={fadeInUpAnimation}
+      className="md:col-span-4 p-8 md:p-4"
+    >
       <Link href={{ pathname: "/editor", query: { template: templatePath } }}>
         <div className="relative overflow-hidden rounded-3xl border border-gray-100 shadow-xl shadow-gray-600/10 dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 group cursor-pointer">
           {/* Image with smooth hover effect */}
@@ -42,7 +52,7 @@ const TemplatePreview = ({ imgSrc, previewName, templatePath }) => {
           </div>
         </div>
       </Link>
-    </div>
+    </motion.div>
   );
 };
 
