@@ -31,9 +31,9 @@ fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-20"
         /> */}
         <div className="flex flex-col gap-4">
           <p className=" text-2xl font-medium text-gray-400 text-center">
-            We don’t charge you a thing! If you enjoyed using makemyREADME,
-            support us by sharing it with your network and helping spread this
-            free tool to developers everywhere
+            We don’t charge you a thing! If you enjoyed using MakeMyReadMe, help
+            us grow by sharing the project on Twitter and star our repository on
+            GitHub.
           </p>
           <div className=" flex flex-col md:flex-row items-center justify-evenly gap-4 md:ml-[-1rem]">
             <a
@@ -52,26 +52,26 @@ fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-20"
                 priority
               />
             </a>
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center justify-center gap-4">
               <div className="w-20 border-b border-gray-400 hidden md:block"></div>
               <span className=" text-gray-400 text-2xl font-thin mt-[-1.5rem] md:mt-0 ">
-                OR
+                AND
               </span>
               <div className="w-20 border-b border-gray-400 hidden md:block"></div>
             </div>
 
             <a
-              href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2FmakemyREADME.com"
+              href="https://github.com/hawkeye-10844/makemyreadme"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Share on LinkedIn"
-              title="Share on LinkedIn"
+              aria-label="Star on github repo"
+              title="Star on github repo"
             >
               <Image
-                src={"/images/linkedin.png"}
-                width={90}
-                height={90}
-                alt="linkedin"
+                src={"/images/github.png"}
+                width={100}
+                height={100}
+                alt="github repo"
                 className=" hover:scale-110 cursor-pointer transition-all"
                 priority
               />
