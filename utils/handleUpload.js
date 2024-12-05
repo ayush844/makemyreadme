@@ -24,7 +24,9 @@ export const handleUpload = async (event, setUrl, setMarkdown, markdown) => {
 			if (data.url) {
 				setUrl((prevUrl) => [...prevUrl, data.url]);
 				setMarkdown(markdown + "\n\n" + "![Uploaded Image](" + data.url + ")");
+				return true;
 			}
+			return false;
 		} catch (error) {
 			console.error("Image upload failed:", error);
 		}

@@ -1,7 +1,7 @@
 import cloudinary from "./cloudinary";
 
 async function deleteOldImages() {
-	const oneDayInMs = 24 * 60 * 60 * 1000;
+	const oneDayInMs = 3 * 60 * 60 * 1000;
 	const now = new Date();
 
 	try {

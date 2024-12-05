@@ -2,31 +2,32 @@ import components from "@/utils/components";
 import React, { useState } from "react";
 import Image from "next/image";
 import ComponentPreviewer from "./ComponentPreviewer";
+import { toast } from "react-toastify";
 
 const ComponentsModal = ({ appendMarkdown, toggleModal }) => {
-  const [selectedComponent, setSelectedComponent] = useState(null);
+	const [selectedComponent, setSelectedComponent] = useState(null);
 
-  return (
-    <div
-      className="bg-gray-900 w-[70vw] h-[80vh] text-white rounded-md border-2 border-primary grid grid-cols-3 p-6 gap-4
+	return (
+		<div
+			className="bg-gray-900 w-[70vw] h-[80vh] text-white rounded-md border-2 border-primary grid grid-cols-3 p-6 gap-4
   fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-20"
-    >
-      <div className="col-span-1 bg-gray-950 rounded-md h-full w-full overflow-y-auto overflow-x-hidden border border-gray-200 p-8 flex flex-col gap-4 scrollbar-thin scrollbar-webkit">
-        {components.map((component, index) => (
-          <div
-            key={index}
-            onClick={() => setSelectedComponent(component)}
-            className={`${component.tailwindClasses} cursor-pointer px-3 py-4 ${
-              selectedComponent?.name === component.name
-                ? "bg-gray-700 scale-105"
-                : "bg-gray-900"
-            }`}
-          >
-            {component.name}
-          </div>
-        ))}
-      </div>
-      {/* <div className="col-span-2 bg-slate-950 h-full w-full rounded-md border border-gray-200 flex flex-col gap-10 items-center justify-center overflow-y-auto overflow-x-hidden">
+		>
+			<div className="col-span-1 bg-gray-950 rounded-md h-full w-full overflow-y-auto overflow-x-hidden border border-gray-200 p-8 flex flex-col gap-4 scrollbar-thin scrollbar-webkit">
+				{components.map((component, index) => (
+					<div
+						key={index}
+						onClick={() => setSelectedComponent(component)}
+						className={`${component.tailwindClasses} cursor-pointer px-3 py-4 ${
+							selectedComponent?.name === component.name
+								? "bg-gray-700 scale-105"
+								: "bg-gray-900"
+						}`}
+					>
+						{component.name}
+					</div>
+				))}
+			</div>
+			{/* <div className="col-span-2 bg-slate-950 h-full w-full rounded-md border border-gray-200 flex flex-col gap-10 items-center justify-center overflow-y-auto overflow-x-hidden">
         <Image
           src={"/icons/namaste.png"}
           alt="Namaste"
@@ -40,43 +41,44 @@ const ComponentsModal = ({ appendMarkdown, toggleModal }) => {
       </div>
       <ComponentPreviewer markdown={components[0].markdownCode} /> */}
 
-      {/* <div className="col-span-2 bg-slate-950 bg-transparent h-full w-full rounded-md border border-gray-200 flex flex-col gap-10 items-center justify-center overflow-y-auto overflow-x-hidden "> */}
+			{/* <div className="col-span-2 bg-slate-950 bg-transparent h-full w-full rounded-md border border-gray-200 flex flex-col gap-10 items-center justify-center overflow-y-auto overflow-x-hidden "> */}
 
-      <div
-        className={`col-span-2 bg-slate-950 bg-transparent h-full w-full rounded-md  flex flex-col gap-10 items-center justify-center overflow-y-auto overflow-x-hidden `}
-      >
-        {selectedComponent ? (
-          <>
-            <ComponentPreviewer markdown={selectedComponent.markdownCode} />
-            <div className=" flex items-center justify-end mr-4 mb-4 w-full ">
-              <button
-                className="flex items-center justify-center h-11 px-4 rounded-full bg-[#9333EA] hover:bg-purple-600 transition duration-300 transform hover:scale-105 active:scale-95"
-                onClick={() => {
-                  appendMarkdown(selectedComponent.markdownCode);
-                  // toggleModal();
-                }}
-              >
-                <span className="text-md font-semibold">Add To Editor</span>
-              </button>
-            </div>
-          </>
-        ) : (
-          <div className="flex flex-col items-center justify-center">
-            <Image
-              src={"/icons/setting.png"}
-              alt="Setting"
-              width={200}
-              height={200}
-              priority
-            />
-            <h1 className="text-4xl font-extrabold text-blue-400">
-              Select a component to start
-            </h1>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+			<div
+				className={`col-span-2 bg-slate-950 bg-transparent h-full w-full rounded-md  flex flex-col gap-10 items-center justify-center overflow-y-auto overflow-x-hidden `}
+			>
+				{selectedComponent ? (
+					<>
+						<ComponentPreviewer markdown={selectedComponent.markdownCode} />
+						<div className=" flex items-center justify-end mr-4 mb-4 w-full ">
+							<button
+								className="flex items-center justify-center h-11 px-4 rounded-full bg-[#9333EA] hover:bg-purple-600 transition duration-300 transform hover:scale-105 active:scale-95"
+								onClick={() => {
+									appendMarkdown(selectedComponent.markdownCode);
+									toast.success("Component added to editor");
+									// toggleModal();
+								}}
+							>
+								<span className="text-md font-semibold">Add To Editor</span>
+							</button>
+						</div>
+					</>
+				) : (
+					<div className="flex flex-col items-center justify-center">
+						<Image
+							src={"/icons/setting.png"}
+							alt="Setting"
+							width={200}
+							height={200}
+							priority
+						/>
+						<h1 className="text-4xl font-extrabold text-blue-400">
+							Select a component to start
+						</h1>
+					</div>
+				)}
+			</div>
+		</div>
+	);
 };
 
 export default ComponentsModal;

@@ -1,25 +1,39 @@
 import { handleDelete } from "@/utils/handleDelete";
 import { handleUpload } from "@/utils/handleUpload";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaCopy } from "react-icons/fa";
 import { IoMdAddCircle } from "react-icons/io";
 import { RiImageAddFill } from "react-icons/ri";
 import { RiImageAddLine } from "react-icons/ri";
+import { toast } from "react-toastify";
 
 export default function Editor({
 	markdown,
 	setMarkdown,
 	ref,
 	handleScroll,
-  toggleThankYou,
-  url,
-  setUrl
+	toggleThankYou,
+	url,
+	setUrl,
+	template,
 }) {
+	const [temp, setTemp] = useState("Default Template");
+	useEffect(() => {
+		if (template == "basic") {
+			setTemp("Basic Template");
+		} else if (template == "os") {
+			setTemp("Open Source Template");
+		} else if (template == "doc") {
+			setTemp("Documentation Template");
+		} else if (template == "business") {
+			setTemp("Business Template");
+		}
+	}, [template, temp]);
 	return (
 		<div className="col-span-6 h-[90vh] flex flex-col max-w-full p-4 bg-[#0f172a] text-white border border-gray-700 rounded-lg shadow-lg mx-2">
 			<div className="flex justify-between items-center mb-4">
 				<div className="flex items-center h-11 px-4">
-					<span className="text-2xl font-semibold">Editor</span>
+					<span className="text-2xl font-semibold">{`${temp}`}</span>
 				</div>
 				{/* <button className="flex items-center justify-center h-11 px-4 rounded-lg bg-[#9333EA] hover:bg-purple-600 transition duration-300 transform hover:scale-105 active:scale-95 gap-2">
 					<FaPlay className="text-white" />
@@ -33,7 +47,7 @@ export default function Editor({
 							.writeText(markdown)
 							.then(() => {
 								if (url.length > 0) handleDelete(url);
-								alert("Markdown copied to clipboard!");
+								// alert("Markdown copied to clipboard!");
 							})
 							.catch((err) => {
 								console.error("Failed to copy markdown:", err);
@@ -68,9 +82,19 @@ export default function Editor({
 					<input
 						type="file"
 						id="file-input"
-						onChange={(event) =>
-							handleUpload(event, setUrl, setMarkdown, markdown)
-						}
+						accept="image/*"
+						onChange={(event) => {
+							if (handleUpload(event, setUrl, setMarkdown, markdown)) {
+								toast.info(
+									"Image uploaded successfully! and will be displayed soon. Remember it will be removed from our server after 3 hours, or if you click the 'Copy' or 'Export' button. (As it is just for your preview.)",
+									{
+										autoClose: false,
+									}
+								);
+							} else {
+								toast.error("Image upload failed. Please try again.");
+							}
+						}}
 						style={{ display: "none" }}
 					/>
 					{/* <IoMdAddCircle className="text-3xl text-white" /> */}

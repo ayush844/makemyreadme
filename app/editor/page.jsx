@@ -117,6 +117,7 @@ const Editor = () => {
 					toggleThankYou={toggleThankYou}
 					url={url}
 					setUrl={setUrl}
+					template={template}
 				/>
 				<MarkdownPreviewer
 					ref={container2Ref}
