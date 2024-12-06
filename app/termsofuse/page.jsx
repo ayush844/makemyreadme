@@ -123,18 +123,18 @@ const TermsOfUse = () => {
             </p>
           </section>
 
-          <section>
+          {/* <section>
             <h2 className="text-2xl font-semibold mb-2">10. Governing Law</h2>
             <p>
               These Terms of Use shall be governed by and construed in
               accordance with the laws of [Your Country/State], without regard
               to its conflict of law principles.
             </p>
-          </section>
+          </section> */}
 
           <section>
             <h2 className="text-2xl font-semibold mb-2">
-              11. Contact Information
+              10. Contact Information
             </h2>
             <p>
               If you have any questions about these Terms of Use, please contact
