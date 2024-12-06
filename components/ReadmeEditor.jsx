@@ -1,12 +1,12 @@
 import { handleDelete } from "@/utils/handleDelete";
 import { handleUpload } from "@/utils/handleUpload";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaCopy } from "react-icons/fa";
-import { IoMdAddCircle } from "react-icons/io";
-import { RiImageAddFill } from "react-icons/ri";
 import { RiImageAddLine } from "react-icons/ri";
 import { toast } from "react-toastify";
-
+import { GoHeading, GoBold, GoItalic, GoListUnordered } from "react-icons/go";
+import { PiBracketsCurly } from "react-icons/pi";
+import { BsQuote } from "react-icons/bs";
 export default function Editor({
   markdown,
   setMarkdown,
@@ -29,6 +29,11 @@ export default function Editor({
       setTemp("Business Template");
     }
   }, [template, temp]);
+  useEffect(() => {
+    if (ref?.current) {
+      ref.current.scrollTop = ref.current.scrollHeight;
+    }
+  }, [markdown]);
   return (
     <div className="col-span-6 h-[90vh] flex flex-col max-w-full p-4 bg-[#0f172a] text-white border border-gray-700 rounded-lg shadow-lg mx-2">
       <div className="flex justify-between items-center mb-4">
@@ -47,11 +52,10 @@ export default function Editor({
               .writeText(markdown)
               .then(() => {
                 if (url.length > 0) handleDelete(url);
-                // alert("Markdown copied to clipboard!");
               })
               .catch((err) => {
                 console.error("Failed to copy markdown:", err);
-                alert("Failed to copy. Please try again.");
+                toast.error("Failed to copy. Please try again.");
               });
             toggleThankYou();
           }}
@@ -71,10 +75,69 @@ export default function Editor({
         ></textarea>
       </div>
 
-      <div className="flex justify-end items-center mt-4 space-x-3">
-        {/* <button className="flex items-center justify-center h-11 px-4 rounded-full bg-[#9333EA] hover:bg-purple-600 transition duration-300 transform hover:scale-105 active:scale-95">
+      <div className="flex justify-between items-center mt-4 space-x-3">
+        {/* <button
+			
+				{/* <button className="flex items-center justify-center h-11 px-4 rounded-full bg-[#9333EA] hover:bg-purple-600 transition duration-300 transform hover:scale-105 active:scale-95">
           <span className="text-md font-semibold">Format</span>
         </button> */}
+        <div className="flex space-x-1">
+          <button
+            className="flex items-center justify-center h-11 px-4 cursor-pointer"
+            onClick={() =>
+              setMarkdown(
+                markdown +
+                  "\n\n" +
+                  "# Heading1" +
+                  "\n" +
+                  "## Heading2" +
+                  "\n" +
+                  "### Heading3"
+              )
+            }
+          >
+            <GoHeading className="text-2xl text-white" />
+          </button>
+          <button
+            className="flex items-center justify-center h-11 px-4 cursor-pointer"
+            onClick={() => setMarkdown(markdown + "\n\n" + "**bold**")}
+          >
+            <GoBold className="text-2xl text-white" />
+          </button>
+          <button
+            className="flex items-center justify-center h-11 px-4 cursor-pointer"
+            onClick={() => setMarkdown(markdown + "\n\n" + "*italic*")}
+          >
+            <GoItalic className="text-2xl text-white" />
+          </button>
+          <button
+            className="flex items-center justify-center h-11 px-4 cursor-pointer"
+            onClick={() => setMarkdown(markdown + "\n\n" + "> quote")}
+          >
+            <BsQuote className="text-2xl text-white" />
+          </button>
+          <button
+            className="flex items-center justify-center h-11 px-4 cursor-pointer"
+            onClick={() =>
+              setMarkdown(
+                markdown + "\n\n" + "- list1" + "\n- list2" + "\n- list3"
+              )
+            }
+          >
+            <GoListUnordered className="text-2xl text-white" />
+          </button>
+          <button
+            className="flex items-center justify-center h-11 px-4 cursor-pointer"
+            onClick={() =>
+              setMarkdown(
+                markdown + "\n\n" + "```bash" + "\n" + "code" + "\n" + "```"
+              )
+            }
+          >
+            <PiBracketsCurly className="text-2xl text-white" />
+          </button>
+        </div>
+
         <button
           className="flex items-center justify-center h-11 px-4 rounded-full bg-gray-600 hover:bg-gray-500 transition duration-300 transform hover:scale-105 active:scale-95"
           onClick={() => document.getElementById("file-input").click()}
