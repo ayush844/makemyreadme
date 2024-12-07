@@ -41,8 +41,8 @@ const ContactUs = () => {
           Contact Us
         </h1>
         <p className="text-gray-100 text-center mb-6">
-          We'd love to hear from you! Please fill out the form below, and we'll
-          get back to you soon.
+          We would love to hear from you! Please fill out the form below, and we
+          will get back to you soon.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -113,7 +113,7 @@ const ContactUs = () => {
 
         {submitted && (
           <div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-800 rounded">
-            Thank you for reaching out! We'll get back to you soon.
+            Thank you for reaching out! We will get back to you soon.
           </div>
         )}
       </div>

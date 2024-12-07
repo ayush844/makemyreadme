@@ -59,7 +59,7 @@ const PrivacyPolicy = () => {
 
           <section>
             <h2 className="text-2xl font-semibold mb-2">
-              5. Children's Privacy
+              5. Children" Privacy
             </h2>
             <p>
               MakeMyReadMe is designed for users of all ages and does not
@@ -77,7 +77,7 @@ const PrivacyPolicy = () => {
               We may update this Privacy Policy periodically to reflect changes
               to our practices or for other operational, legal, or regulatory
               reasons. Any updates will be posted on this page with an updated
-              "Effective Date."
+              Effective Date.
             </p>
           </section>
 

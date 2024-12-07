@@ -56,7 +56,7 @@ const TermsOfUse = () => {
               <ul className="list-disc pl-6">
                 <li>Violate any applicable laws or regulations.</li>
                 <li>Infringe on the intellectual property rights of others.</li>
-                <li>Disrupt or interfere with the website’s functionality.</li>
+                <li>Disrupt or interfere with the website functionality.</li>
                 <li>
                   Attempt to gain unauthorized access to the website or its
                   servers.
@@ -82,8 +82,8 @@ const TermsOfUse = () => {
               6. Disclaimer of Warranties
             </h2>
             <p>
-              MakeMyReadMe is provided on an "as-is" and "as-available" basis.
-              We make no warranties or representations regarding the accuracy,
+              MakeMyReadMe is provided on an as-is and as-available basis. We
+              make no warranties or representations regarding the accuracy,
               reliability, or availability of the website. Use of the website is
               at your own risk.
             </p>

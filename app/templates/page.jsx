@@ -50,11 +50,6 @@ const Template = () => {
   ];
   return (
     <div className="container mx-auto py-10 relative min-h-[90vh]">
-      {/* <div className="text-white text-center text-2xl md:text-left">
-					{" "}
-					Templates
-				</div> */}
-
       <div className="mb-12 text-center ">
         <motion.h2
           initial={{ opacity: 0, y: 100 }}

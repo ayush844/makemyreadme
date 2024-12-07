@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import { motion } from "motion/react";
 import { delay } from "motion";
+import Image from "next/image";
 
 const Articles = ({ heading, description }) => {
   const articles = [
@@ -120,12 +121,12 @@ const Articles = ({ heading, description }) => {
                   }}
                 >
                   <div className="relative overflow-hidden rounded-xl">
-                    <img
+                    <Image
                       src={article.imgSrc}
                       alt="art cover"
                       loading="lazy"
-                      width="1000"
-                      height="667"
+                      width={1000}
+                      height={667}
                       className="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
                     />
                   </div>
@@ -173,12 +174,12 @@ const Articles = ({ heading, description }) => {
                   }}
                 >
                   <div className="relative overflow-hidden rounded-xl">
-                    <img
+                    <Image
                       src={article.imgSrc}
                       alt="art cover"
                       loading="lazy"
-                      width="1000"
-                      height="667"
+                      width={1000}
+                      height={667}
                       className="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
                     />
                   </div>

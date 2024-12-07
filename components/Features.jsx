@@ -41,7 +41,7 @@ const Features = () => {
             makemyREADME combines innovation and simplicity to help developers
             generate professional, eye-catching README files. With beautifull
             components and templates, you can bring your GitHub projects to life
-            with minimal effort—saving time and boosting your project's appeal.
+            with minimal effort—saving time and boosting your project appeal.
           </p>
         </motion.div>
 

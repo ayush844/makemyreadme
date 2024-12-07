@@ -28,12 +28,12 @@ export default function Editor({
     } else if (template == "business") {
       setTemp("Business Template");
     }
-  }, [template, temp]);
+  }, [template, temp, ref]);
   useEffect(() => {
     if (ref?.current) {
       ref.current.scrollTop = ref.current.scrollHeight;
     }
-  }, [markdown]);
+  }, [markdown, ref]);
   return (
     <div className="col-span-6 h-[90vh] flex flex-col max-w-full p-4 bg-[#0f172a] text-white border border-gray-700 rounded-lg shadow-lg mx-2">
       <div className="flex justify-between items-center mb-4">
@@ -54,7 +54,7 @@ export default function Editor({
                 if (url.length > 0) handleDelete(url);
               })
               .catch((err) => {
-                console.error("Failed to copy markdown:", err);
+                // console.error("Failed to copy markdown:", err);
                 toast.error("Failed to copy. Please try again.");
               });
             toggleThankYou();
