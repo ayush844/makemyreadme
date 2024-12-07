@@ -4,7 +4,7 @@ import ComponentsModal from "@/components/ComponentsModal";
 import ReadmeEditor from "@/components/ReadmeEditor";
 import Image from "next/image";
 import MarkdownPreviewer from "@/components/MarkdownPreviewer";
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/router";
 
 import {
   BasicTemplate,
@@ -18,7 +18,7 @@ import ThankYouModal from "@/components/ThankYouModal";
 const Editor = () => {
   const [markdown, setMarkdown] = useState(DefaultTemplate);
   const [url, setUrl] = useState([]);
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
   // const template = searchParams.get("template");
 
   const [template, setTemplate] = useState("default");
@@ -46,11 +46,38 @@ const Editor = () => {
   // }, [template]);
   //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+  // useEffect(() => {
+  //   // Execute this only in the browser
+  //   if (typeof window !== "undefined") {
+  //     setTemplate(searchParams.get("template"));
+  //     switch (template) {
+  //       case "basic":
+  //         setMarkdown(BasicTemplate);
+  //         break;
+  //       case "os":
+  //         setMarkdown(OpenSourceTemplate);
+  //         break;
+  //       case "doc":
+  //         setMarkdown(DocumentationTemplate);
+  //         break;
+  //       case "business":
+  //         setMarkdown(BusinessTemplate);
+  //         break;
+  //       default:
+  //         setMarkdown(DefaultTemplate);
+  //         break;
+  //     }
+  //   }
+  // }, [searchParams]);
+
   useEffect(() => {
-    // Execute this only in the browser
     if (typeof window !== "undefined") {
-      setTemplate(searchParams.get("template"));
-      switch (template) {
+      const params = new URLSearchParams(window.location.search);
+      const currentTemplate = params.get("template") || "default";
+
+      setTemplate(currentTemplate);
+
+      switch (currentTemplate) {
         case "basic":
           setMarkdown(BasicTemplate);
           break;
@@ -68,7 +95,7 @@ const Editor = () => {
           break;
       }
     }
-  }, [searchParams]);
+  }, []);
 
   const [modal, setModal] = useState(false);
 

@@ -4,7 +4,7 @@
 // import Markdown_Tips from "@/utils/Blogs/Markdown_Tips";
 import React, { Suspense, useEffect, useState } from "react";
 import { marked } from "marked";
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 import "github-markdown-css";
 
 const Markdown = (markdown) => {
@@ -29,14 +29,17 @@ const Blog = () => {
   const [name, setBlogName] = useState("");
 
   // Ensure useSearchParams runs only on the client
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const blogName = searchParams.get("name");
+      const params = new URLSearchParams(window.location.search);
+      const blogName = params.get("name") || "Crafting_README";
+
+      // const blogName = searchParams.get("name");
       setBlogName(blogName || ""); // Default to empty string if no name found
     }
-  }, [searchParams]);
+  }, []);
 
   return (
     <Suspense>
