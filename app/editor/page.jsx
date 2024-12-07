@@ -19,7 +19,9 @@ const Editor = () => {
   const [markdown, setMarkdown] = useState(DefaultTemplate);
   const [url, setUrl] = useState([]);
   const searchParams = useSearchParams();
-  const template = searchParams.get("template");
+  // const template = searchParams.get("template");
+
+  const [template, setTemplate] = useState("default");
 
   //   // Use a state to trigger the useSearchParams() client-side
   //   const [searchParams, setSearchParams] = useState(null);
@@ -47,7 +49,7 @@ const Editor = () => {
   useEffect(() => {
     // Execute this only in the browser
     if (typeof window !== "undefined") {
-      const template = searchParams.get("template");
+      setTemplate(searchParams.get("template"));
       switch (template) {
         case "basic":
           setMarkdown(BasicTemplate);
