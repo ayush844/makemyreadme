@@ -109,11 +109,11 @@ const Editor = () => {
     setThankyou((modal) => !modal);
   };
 
-  if (modal || thankyou) {
-    document.body.classList.add("overflow-y-hidden");
-  } else {
-    document.body.classList.remove("overflow-y-hidden");
-  }
+  // if (modal || thankyou) {
+  //   document.body.classList.add("overflow-y-hidden");
+  // } else {
+  //   document.body.classList.remove("overflow-y-hidden");
+  // }
 
   const container1Ref = useRef(null);
   const container2Ref = useRef(null);
