@@ -21,6 +21,15 @@ const Editor = () => {
   const searchParams = useSearchParams();
   const template = searchParams.get("template");
 
+  //   // Use a state to trigger the useSearchParams() client-side
+  //   const [searchParams, setSearchParams] = useState(null);
+
+  //   useEffect(() => {
+  //     // This ensures useSearchParams is only executed on the client-side
+  //     const params = new URLSearchParams(window.location.search);
+  //     setSearchParams(params);
+  //   }, []);
+
   useEffect(() => {
     if (template == "basic") {
       setMarkdown(BasicTemplate);
@@ -75,66 +84,68 @@ const Editor = () => {
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div className="min-h-[90vh] w-screen lg:flex items-center justify-center relative py-6 hidden ">
-        <button
-          onClick={toggleModal}
-          className="bg-primary border-white border-2 py-3 px-3  transition-all w-fit flex items-center justify-center gap-4  hover:scale-105 left-5 z-30 rounded-full absolute top-[50%] transform -translate-x-1/2 -translate-y-1/2 "
-        >
-          <Image
-            src={"/images/cubes.png"}
-            width={40}
-            height={40}
-            alt="blocks"
-          />
-          {/* <span className='text-black font-bold text-xl'>{modal ? "Hide Components":"Add Components"}</span> */}
-        </button>
-
-        {modal && (
-          <>
-            <div
-              onClick={toggleModal}
-              className=" z-10 fixed top-0 left-0 right-0 bottom-0 w-screen h-screen bg-[rgba(3,4,8,0.51)]"
-            ></div>
-            <ComponentsModal
-              appendMarkdown={(newMarkdown) =>
-                setMarkdown((prev) => prev + newMarkdown)
-              }
+    <>
+      <Suspense fallback={<div>Loading...</div>}>
+        <div className="min-h-[90vh] w-screen lg:flex items-center justify-center relative py-6 hidden ">
+          <button
+            onClick={toggleModal}
+            className="bg-primary border-white border-2 py-3 px-3  transition-all w-fit flex items-center justify-center gap-4  hover:scale-105 left-5 z-30 rounded-full absolute top-[50%] transform -translate-x-1/2 -translate-y-1/2 "
+          >
+            <Image
+              src={"/images/cubes.png"}
+              width={40}
+              height={40}
+              alt="blocks"
             />
-          </>
-        )}
+            {/* <span className='text-black font-bold text-xl'>{modal ? "Hide Components":"Add Components"}</span> */}
+          </button>
 
-        {thankyou && (
-          <>
-            <div
-              onClick={toggleThankYou}
-              className=" z-10 fixed top-0 left-0 right-0 bottom-0 w-screen h-screen bg-[rgba(3,4,8,0.51)]"
-            ></div>
-            <ThankYouModal />
-          </>
-        )}
+          {modal && (
+            <>
+              <div
+                onClick={toggleModal}
+                className=" z-10 fixed top-0 left-0 right-0 bottom-0 w-screen h-screen bg-[rgba(3,4,8,0.51)]"
+              ></div>
+              <ComponentsModal
+                appendMarkdown={(newMarkdown) =>
+                  setMarkdown((prev) => prev + newMarkdown)
+                }
+              />
+            </>
+          )}
 
-        <div className="grid grid-cols-12 w-screen container mx-auto">
-          <ReadmeEditor
-            ref={container1Ref}
-            handleScroll={() => handleScroll(container1Ref, container2Ref)}
-            setMarkdown={setMarkdown}
-            markdown={markdown}
-            toggleThankYou={toggleThankYou}
-            url={url}
-            setUrl={setUrl}
-            template={template}
-          />
-          <MarkdownPreviewer
-            ref={container2Ref}
-            handleScroll={() => handleScroll(container2Ref, container1Ref)}
-            markdown={markdown}
-            toggleThankYou={toggleThankYou}
-            url={url}
-          />
+          {thankyou && (
+            <>
+              <div
+                onClick={toggleThankYou}
+                className=" z-10 fixed top-0 left-0 right-0 bottom-0 w-screen h-screen bg-[rgba(3,4,8,0.51)]"
+              ></div>
+              <ThankYouModal />
+            </>
+          )}
+
+          <div className="grid grid-cols-12 w-screen container mx-auto">
+            <ReadmeEditor
+              ref={container1Ref}
+              handleScroll={() => handleScroll(container1Ref, container2Ref)}
+              setMarkdown={setMarkdown}
+              markdown={markdown}
+              toggleThankYou={toggleThankYou}
+              url={url}
+              setUrl={setUrl}
+              template={template}
+            />
+            <MarkdownPreviewer
+              ref={container2Ref}
+              handleScroll={() => handleScroll(container2Ref, container1Ref)}
+              markdown={markdown}
+              toggleThankYou={toggleThankYou}
+              url={url}
+            />
+          </div>
         </div>
-      </div>
-    </Suspense>
+      </Suspense>
+    </>
   );
 };
 
