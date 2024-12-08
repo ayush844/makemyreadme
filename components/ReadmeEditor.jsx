@@ -40,10 +40,7 @@ export default function Editor({
         <div className="flex items-center h-11 px-4">
           <span className="text-2xl font-semibold">{`${temp}`}</span>
         </div>
-        {/* <button className="flex items-center justify-center h-11 px-4 rounded-lg bg-[#9333EA] hover:bg-purple-600 transition duration-300 transform hover:scale-105 active:scale-95 gap-2">
-					<FaPlay className="text-white" />
-					<span className="text-md font-semibold">Run</span>
-				</button> */}
+
         <button
           className="flex items-center justify-center h-11 w-11 rounded-full bg-gray-600 hover:bg-gray-500 transition duration-300 transform hover:scale-105 active:scale-95"
           aria-label="copy"
